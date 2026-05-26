@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devari App</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:#0f0f0f;
+  color:white;
+  padding-bottom:150px;
+}
+
+.header{
+  padding:15px;
+  background:linear-gradient(90deg,#ff0000,#ff7300);
+  border-radius:0 0 20px 20px;
+}
+
+.search{
+  margin:10px;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+}
+
+.card{
+  background:#1a1a1a;
+  margin:12px;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(255,0,0,.2);
+}
+
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  cursor:pointer;
+}
+
+.content{
+  padding:10px;
+}
+
+.badge{
+  background:red;
+  padding:3px 8px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  padding:8px;
+  border-radius:10px;
+  background:linear-gradient(90deg,red,orange);
+  color:white;
+  margin-top:5px;
+  cursor:pointer;
+}
+
+.title{
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.price{
+  color:#ffcc00;
+}
+
+.cart{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#1a1a1a;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.wa{
+  position:fixed;
+  bottom:80px;
+  right:15px;
+  background:#25D366;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* FULL IMAGE */
+#popupImg{
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.97);
+  justify-content:center;
+  align-items:center;
+}
+
+#showImg{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:10px;
+  box-sizing:border-box;
+}
+
+#closeBtn{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:35px;
+  color:white;
+  cursor:pointer;
+  z-index:1000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h2>🔥 Devari Dapur Enak</h2>
+  <small>Mie Pedas Level Bisa Dipilih</small>
+</div>
+
+<div class="search">
+  <input placeholder="Cari menu...">
+</div>
+
+<!-- MIE -->
+<div class="card">
+
+<img class="menu-img" src="https://cdn.phototourl.com/free/2026-05-26-7acb3998-2c1e-417d-aaf6-fd93e42a93b8.jpg">
+
+<img class="menu-img" src="https://cdn.phototourl.com/free/2026-05-26-c1afe34d-5cdb-4c8b-8457-ce98b18640cc.jpg">
+
+<div class="content">
+
+<span class="badge">🔥 Best Seller</span>
+
+<h3>Mie Pedas Manja</h3>
+<p>Rp 10.000 | 🌶️</p>
+<button class="btn" onclick="add('Mie Pedas Manja',10000)">Tambah</button>
+
+<h3>Mie Pedas Nagih</h3>
+<p>Rp 10.000 | 🌶️🌶️</p>
+<button class="btn" onclick="add('Mie Pedas Nagih',10000)">Tambah</button>
+
+<h3>Mie Pedas Gila</h3>
+<p>Rp 10.000 | 🌶️🌶️🌶️</p>
+<button class="btn" onclick="add('Mie Pedas Gila',10000)">Tambah</button>
+
+<h3>Mie Pedas Mampus</h3>
+<p>Rp 10.000 | 🌶️🌶️🌶️🌶️</p>
+<button class="btn" onclick="add('Mie Pedas Mampus',10000)">Tambah</button>
+
+<div class="title">🍜 Toping Mie</div>
+
+<p>Daging <span class="price">+ Rp 2.000</span></p>
+<button class="btn" onclick="add('Daging',2000)">Tambah</button>
+
+<p>Sosis <span class="price">+ Rp 2.000</span></p>
+<button class="btn" onclick="add('Sosis',2000)">Tambah</button>
+
+</div>
+</div>
+
+<!-- MINUMAN -->
+<div class="card">
+
+<img class="menu-img" src="https://cdn.phototourl.com/free/2026-05-26-c88df578-782f-41a5-8242-93751c76a9e7.jpg">
+
+<div class="content">
+
+<span class="badge">🥤 Drinks</span>
+
+<h3>Es Teh Manis</h3>
+<p>Rp 3.000</p>
+<button class="btn" onclick="add('Es Teh Manis',3000)">Tambah</button>
+
+<h3>Milo</h3>
+<p>Rp 10.000</p>
+<button class="btn" onclick="add('Milo',10000)">Tambah</button>
+
+<h3>Coklat</h3>
+<p>Rp 10.000</p>
+<button class="btn" onclick="add('Coklat',10000)">Tambah</button>
+
+<h3>Capucino</h3>
+<p>Rp 10.000</p>
+<button class="btn" onclick="add('Capucino',10000)">Tambah</button>
+
+<h3>Matcha</h3>
+<p>Rp 12.000</p>
+<button class="btn" onclick="add('Matcha',12000)">Tambah</button>
+
+<div class="title">🥤 Toping Minuman</div>
+
+<p>Oreo <span class="price">+ Rp 2.000</span></p>
+<button class="btn" onclick="add('Oreo',2000)">Tambah</button>
+
+<p>Cao <span class="price">+ Rp 2.000</span></p>
+<button class="btn" onclick="add('Cao',2000)">Tambah</button>
+
+</div>
+</div>
+
+<!-- DIMSUM -->
+<div class="content">
+
+<span class="badge">🥟 Dimsum</span>
+
+<h3>Dimsum Ayam Udang</h3>
+<p>Rp 3.000</p>
+<button class="btn" onclick="add('Dimsum Ayam Udang',3000)">Tambah</button>
+
+<h3>Dimsum Mozza</h3>
+<p>Rp 3.000</p>
+<button class="btn" onclick="add('Dimsum Mozza',3000)">Tambah</button>
+
+<h3>Dimsum Crab</h3>
+<p>Rp 3.000</p>
+<button class="btn" onclick="add('Dimsum Crab',3000)">Tambah</button>
+
+<h3>Dimsum Mentai</h3>
+<p>Rp 15.000</p>
+
+<div style="display:flex; gap:8px;">
+
+<button class="btn"
+onclick="add('Dimsum Mentai',15000)">
+Tambah
+</button>
+
+</div>
+
+</div>
+
+<!-- CART -->
+<div class="cart">
+  <div>Total: Rp <span id="total">0</span></div>
+
+  <button class="btn" style="width:auto"
+  onclick="checkout()">Pesan</button>
+</div>
+
+<div class="wa" onclick="checkout()">💬</div>
+
+<!-- POPUP IMAGE -->
+<div id="popupImg" onclick="closeImg()">
+
+  <span id="closeBtn">✕</span>
+
+  <img id="showImg" onclick="event.stopPropagation()">
+
+</div>
+
+<script>
+let total = 0;
+let list = [];
+let qtyBasreng = 0;
+
+function add(nama,harga){
+
+  total += harga;
+  list.push(nama);
+
+  document.getElementById("total").innerText = total;
+}
+
+function checkout(){
+
+  let txt = "Halo saya mau pesan:%0A";
+
+  list.forEach(item=>{
+    txt += "- " + item + "%0A";
+  });
+
+  txt += "%0ATotal: Rp " + total;
+
+  window.open("https://wa.me/6283847871709?text="+txt);
+}
+
+/* FULL IMAGE */
+document.querySelectorAll(".menu-img").forEach(img=>{
+
+  img.onclick = function(){
+
+    document.getElementById("popupImg").style.display = "flex";
+
+    document.getElementById("showImg").src = this.src;
+  }
+
+});
+
+function closeImg(){
+  document.getElementById("popupImg").style.display = "none";
+}
+</script>
+
+</body>
+</html>
